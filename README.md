@@ -14,6 +14,7 @@
 - [安装](#安装)
 - [使用说明](#使用说明)
 - [参考文档](#参考文档)
+- [参数设置](#参数设置)
 - [维护者](#维护者)
 - [如何贡献](#如何贡献)
 
@@ -28,8 +29,6 @@
 ### 运行服务器
 
 打开命令行(在开始菜单中键入cmd)，切换目录到项目父文件夹ChemECar_web，形如：
-
-（复制`...\>`后面的内容）
 
 ```shell
 ...\> d:
@@ -48,29 +47,50 @@
 (min_django_env) ...\ChemECar_web\> python oe_site\manage.py runserver
 ```
 
-至此，即可进入网页 http://127.0.0.1:8000/, 即http://localhost:8000/
+至此，即可进入网页 http://127.0.0.1:8000/app, 亦即http://localhost:8000/app
 
-#### ————上线时删除————
+### 实验记录
 
-修改内容整段复制粘贴进命令行，一键运行服务器:D (复制时别忘了最后一行的换行)
+#### 数据生成与获取
 
-```shell
-d:
-cd D:\9. Software\Code\Python\pycharm_projects\jtc\ChemECar_web
-min_django_env\Scripts\activate.bat
-python oe_site\manage.py runserver
+> 目前使用`record.py`生成虚拟数据，提供接口供后续读取真实实验数据。
+
+新开一个命令行窗口，进入ChemECar_web，运行oe_site\app中的record.py
 
 ```
+...\ChemECar_web\> python oe_site\app\record.py
+```
 
-### 数据记录
+如需停止数据生成，请新开一个命令行窗口，进入ChemECar_web，运行oe_site\app中的testclient.py
+
+```
+...\ChemECar_web\> python oe_site\app\testclient.py.py
+```
+
+#### 实验记录与展示
+
+在`文本框`中输入`数据备注（可选）`，点击开始按钮，数据开始记录并实时展示数据曲线；点击停止按钮，记录停止。
+
+其他人也可观看，不过无法控制数据记录开始与停止。
 
 ### 数据下载
 
+#### 下载
+
+#### 排序
+
+傻瓜式操作，不再赘述。
+
 ## 参数设置
 
-port = 9999；
-
-> 低端口号通常被一些「常用的」服务（HTTP, SNMP 等）所保留。如果你想把程序跑起来，最好使用一个高位端口号（通常是4位的数字）。——[套接字编程指南](https://docs.python.org/zh-cn/3/howto/sockets.html#socket-howto)
+> $$$ chart refresh interval $$$ oe_site\templates\index.html 浏览器端画图的更新间隔(ms)
+> $$$ chart update duration $$$ oe_site\static\js\setChart.js 浏览器端画图的速度(ms)
+> $$$ detect time $$$ oe_sit\app\record.py 检测的间隔时间长度
+> $$$ display data size $$$ oe_site\app\views.py 传输到浏览器端的用于画图的数据大小
+> $$$ display time $$$ oe_site\app\record.py 浏览器端显示的时间长度
+> $$$ internal port $$$ oe_site\app\record.py(1) oe_site\app\record.py(3) 数据记录程序与django后端通信使用的端口
+> $$$ process interval $$$ oe_site\app\record.py 数据记录程序根据信号执行所有操作后的不响应时间(用于节约性能)
+> $$$ signal receive interval $$$ oe_site\app\record.py 数据记录程序接收指令后的不响应时间(用于节约性能)
 
 ## 参考文档
 
@@ -95,8 +115,6 @@ Socket（套接字是什么辣鸡翻译？）——[套接字编程指南](https
 ### 涉及到的其他相关标准库
 
 time，时间的访问和转换——[time](https://docs.python.org/zh-cn/3/library/time.html?highlight=time#module-time)
-
-
 
 ...
 
