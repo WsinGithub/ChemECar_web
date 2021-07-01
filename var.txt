@@ -1,0 +1,9 @@
+
+$$$ chart refresh interval $$$ oe_site\templates\index.html 浏览器端画图的更新间隔(ms)
+$$$ chart update duration $$$ oe_site\static\js\setChart.js 浏览器端画图的速度(ms)
+$$$ detect time $$$ oe_sit\app\record.py 检测的间隔时间长度
+$$$ display data size $$$ oe_site\app\views.py 传输到浏览器端的用于画图的数据大小
+$$$ display time $$$ oe_site\app\record.py 浏览器端显示的时间长度
+$$$ internal port $$$ oe_site\app\record.py(1) oe_site\app\record.py(3) 数据记录程序与django后端通信使用的端口
+$$$ process interval $$$ oe_site\app\record.py 数据记录程序根据信号执行所有操作后的不响应时间(用于节约性能)
+$$$ signal receive interval $$$ oe_site\app\record.py 数据记录程序接收指令后的不响应时间(用于节约性能)

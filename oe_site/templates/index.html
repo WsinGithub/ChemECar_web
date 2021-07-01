@@ -1,0 +1,144 @@
+<!-- 使用Django模板语言载入static, 使用参考: -->
+<!-- https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#static -->
+{% load static %}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scal=1"/>
+
+    <!-- 载入外部CSS层叠样式表文件 -->
+    <link rel="stylesheet" href="{% static 'css/test.css' %}"/>
+
+    <!-- 载入iconfont矢量图标库, 用作交互按钮 -->
+    <script src="{% static 'js/iconfont.js' %}"></script>
+
+    <!-- 载入jQuery库, 简化JavaScript编程语法 -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <!-- 载入flexible库, 实现rem自适应, 方便移动端兼容 -->
+    <script src="{% static 'js/flexible.js' %}"></script>
+
+    <!-- 载入echarts库, 用于可视化 -->
+    <script src="{% static 'js/echarts.js' %}"></script>
+
+</head>
+
+<body>
+<div id="global-wrapper">
+    <div class="nav">
+        <ul>
+            <!-- ">"/"<"按钮, 控制拓展(extend)导航栏的显示与关闭 -->
+            <li id="trigger">
+                <svg id="collapse" class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-next"></use>
+                </svg>
+                <div class="extend">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-back"></use>
+                    </svg>
+                </div>
+            </li>
+
+            <!-- 导航栏中不同图标, 控制不同页面的切换(不刷新整个页面) -->
+            <li id="switch_page_measurement">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-edit"></use>
+                </svg>
+                <div class="text extend">开始实验</div>
+            </li>
+            <li id="switch_page_data">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-instruction"></use>
+                </svg>
+                <div class="text extend">实验数据</div>
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="main">
+
+        <div class="page" id="page_measurement">
+            <form name="exp_post">
+                <ul>
+                    <!-- 从右向左(CSS中float=right)依次排列停止图标, 开始图标, 文本框 -->
+                    <li class="horizontal">
+                        <svg id="end_record" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-diffuserstop"></use>
+                        </svg>
+                    </li>
+                    <li class="horizontal">
+                        <svg id="start_record" class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-diffuserplay"></use>
+                        </svg>
+                    </li>
+                    <li class="horizontal">
+                        <input type="text" name="suffix" placeholder="">
+                    </li>
+
+                    <!-- 指示数据记录是否在进行 -->
+                    <li class="horizontal">
+                        <div id="spector">
+                            spector mode
+                        </div>
+                    </li>
+
+                    <!-- 防止父元素盒子高度为0 -->
+                    <div style="clear:both;"></div>
+                </ul>
+            </form>
+            <div id="chart"></div>
+        </div>
+
+        <div class="page" id="page_data">
+        
+            <!-- https://docs.djangoproject.com/zh-hans/3.2/ref/templates/builtins/#json-script -->
+            <!-- 安全地将 Python 对象输出为 JSON，用 <script> 标签包装，准备好与 JavaScript 一起使用。 -->        
+            <div id="files_json"> {{ files_dict|json_script:"files_dict" }} </div>
+
+            <table id="file_table">
+                <thead>
+                    <tr>
+                        <th class="sort" data-key="date">实验时间<i class="angle_top"></i><i class="angle_bottom"></i></th>
+                        <th class="sort" data-key="note">数据备注<i class="angle_top"></i><i class="angle_bottom"></i></th>
+                        <th>文件下载</th>
+                    </tr>
+                </thead>
+                <tbody id='files_info'>
+                <!-- 通过index.js写入数据文件信息 -->
+                </tbody>
+            </table>
+
+
+
+            {% comment %}
+            这里是一个简单粗暴的文件展示方案
+
+            <ol>
+                <!--https://docs.djangoproject.com/zh-hans/3.2/ref/templates/language/ -->
+                <!--从技术上讲，当模板系统遇到一个点时，它会按照以下顺序尝试进行查找：字典查找、属性或方法查找、数字索引查找-->
+                {% for file in files_dict.files %}
+                <li>
+                    <a href="data/{{ file.url }}">{{ file.name }}</a>
+                </li>
+                {% endfor %}
+            </ol> 
+            {% endcomment %}
+
+        </div>
+
+    </div>
+</div>
+
+<!-- 外部脚本, 引入函数set_chart()和load_data() -->
+<script src="{% static 'js/functions.js' %}"></script>
+<!-- 外部脚本, 选择器选择图表元素chart, 给出图表设定option -->
+<script src="{% static 'js/setChart.js' %}"></script>
+
+
+<!-- 外部脚本, 操控index的主要元素与图表数据 -->
+<script src="{% static 'js/index.js' %}"></script>
+
+</body>
+</html>

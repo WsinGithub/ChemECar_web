@@ -1,0 +1,163 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.test{
+    font-size: 50px;
+}
+ul{
+    list-style-type:none;
+}
+.icon {
+    /*width: 1em;*/
+    width:40px;
+    /*height: 1em;*/
+    height:40px;
+    /*vertical-align: -0.15em;*/
+    fill: currentColor;
+    overflow: hidden;
+    /*font-size: 40px;*/
+}
+
+input{
+    font-size:28px;
+    /*margin:auto;*/
+    outline-style: none;
+    border:1px solid #ccc;
+    border-radius:3px;
+}
+
+li{
+    display: flex;
+    flex-direction: row;
+    margin: 5px 5px;
+}
+
+#chart{
+    width: 18rem;
+    height:9rem;
+    /*border:solid;*/
+}
+
+.nav{
+    /*flex:0;*/
+    float:left;
+    /*width:60px;*/
+    overflow:visible;
+    /*clear-after: both;*/
+}
+
+/*.nav:after{*/
+/*    clear:both;*/
+/*}*/
+
+.text{
+    font-size:20px;
+    margin: auto;
+}
+
+.main{
+    /*position:relative;*/
+    /*left:100px;*/
+    float:left;
+}
+
+/* 实验开始与停止按钮 */
+.horizontal{
+    float:right;
+}
+
+
+#spector{
+    margin:auto;
+    color:#F00
+}
+
+#page_data a{
+    color:pink;
+}
+
+
+/* 设置表格样式 */
+table{
+    font-size: 20px;
+    border: 1px solid #cad9ea;
+    color: #666;
+
+
+    border-collapse: collapse;/* 让表格看起来更精致 */
+}
+
+.file_date, .file_note{
+    padding: 5px 18px 5px 18px ;
+    white-space:nowrap;
+}
+
+tr:nth-child(even){
+    background-color: #f5fafe;
+}
+
+
+/* 表格及排序按钮相关实现 */
+#file_table th{
+    border-bottom: 2px solid #003366;
+    width: 150px;
+    height: 40px;
+    display: table-cell;
+    position: relative;
+}
+
+
+#file_table a {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #6699CC;
+}
+
+#file_table td {
+    overflow: hidden;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #5e5e5e;
+}
+
+.angle_top {
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    border-style: solid;
+    border-width: 0 6px 6px;
+    border-color: transparent transparent #000066;
+    position: absolute;
+    transform: rotate(180deg);
+    bottom: 14px;
+    right: 17px;
+}
+
+.angle_bottom {
+    content: '';
+    width: 0;
+    height: 0;
+    display: block;
+    border-style: solid;
+    border-width: 0 6px 6px;
+    border-color: transparent transparent #000066;
+    position: absolute;
+    top: 10px;
+    right: 17px;
+}
+
+.sort-asc > .angle_bottom {
+    border-color: transparent transparent transparent;
+}
+
+.sort-desc > .angle_top{
+    border-color: transparent transparent transparent;
+}
