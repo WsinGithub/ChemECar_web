@@ -20,7 +20,7 @@
 
 ## 安装
 
-项目使用Python原生虚拟环境[venv](https://docs.python.org/zh-cn/3/library/venv.html)打包好所需库，[安装Python](https://www.python.org/downloads/)即可使用。
+项目使用Python原生虚拟环境[venv](https://docs.python.org/zh-cn/3/library/venv.html)打包好(大部分)所需库，[安装Python](https://www.python.org/downloads/)即可使用。
 
 如Python版本过低(早于Python 3.3)没有内置venv库，或需在虚拟环境中安装新的库，请参阅[Installing packages using pip and virtual environments](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#:~:text=Python%20source%20code.-,Installing%20pip%C2%B6,-pip%20is%20the)获取帮助。
 
@@ -28,7 +28,11 @@
 
 ### 运行服务器
 
-打开命令行(在开始菜单中键入cmd)，切换目录到项目父文件夹ChemECar_web，形如：
+> Win10的文件目录结构用`\`(backslash, 反斜线)，
+> 而在类Linux系统，如树莓派中所用Raspberry Pi OS(Debian)中文件目录结构`/`(slash, 正斜线)。
+> 请注意区分！
+
+打开命令行(Win10为在开始菜单中键入cmd)，切换目录到项目父文件夹ChemECar_web，形如
 
 ```shell
 ...\> d:
@@ -41,11 +45,27 @@
 ...\ChemECar_web\> min_django_env\Scripts\activate.bat
 ```
 
+> 在Raspberry Pi OS终端，请先运行如下代码以提供加上可执行权限。
+> ```shell
+> $ chmod +x min_django_env/Scripts/activate
+> ```
+> 接着“激活”该环境
+>
+> ```shell
+> $ source min_django_env/Scripts/activate
+> ```
+
 运行服务器
 
 ```shell
 (min_django_env) ...\ChemECar_web\> python oe_site\manage.py runserver
 ```
+
+> 如果出现类似`ImportError`报错，请尝试安装或升级`django`，参考
+>
+> ```shell
+> pip install --upgrade django
+> ```
 
 至此，即可进入网页 http://127.0.0.1:8000/app, 亦即http://localhost:8000/app
 
