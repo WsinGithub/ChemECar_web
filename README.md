@@ -64,7 +64,7 @@
 如需停止数据生成，请新开一个命令行窗口，进入ChemECar_web，运行oe_site\app中的testclient.py
 
 ```
-...\ChemECar_web\> python oe_site\app\testclient.py.py
+...\ChemECar_web\> python oe_site\app\testclient.py
 ```
 
 #### 实验记录与展示
