@@ -45,14 +45,14 @@
 ...\ChemECar_web\> min_django_env\Scripts\activate.bat
 ```
 
-> 在Raspberry Pi OS终端，请先运行如下代码以提供加上可执行权限。
+> 在Raspberry Pi OS终端使用的“激活”方法略有不同，请先运行如下代码以提供可执行权限
 > ```shell
-> $ chmod +x min_django_env/Scripts/activate
+> chmod +x min_django_env/Scripts/activate
 > ```
 > 接着“激活”该环境
 >
 > ```shell
-> $ source min_django_env/Scripts/activate
+> source min_django_env/Scripts/activate
 > ```
 
 运行服务器
